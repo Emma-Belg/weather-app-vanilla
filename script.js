@@ -43,7 +43,7 @@ async function updateCountry() {
     const weather = await fetchWeatherData();
     let countryOutput = document.getElementById("countryOutput");
     if (!!getCityInput()) {
-        countryOutput.innerText = weather.city.country;
+        countryOutput.innerText = `, ${weather.city.country}`;
         document.getElementById("countryInput").setAttribute("value", weather.city.country);
     }
 }
