@@ -6,11 +6,14 @@ function getCityInput() {
 // ToDo -> display a vertical image in mobile and horizontal on computers
 
 async function getImage() {
-    let response = await fetch(`https://api.unsplash.com/search/photos?query=${getCityInput()}&client_id=8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83`)
+    const CLIENT_ID = '8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83'
+    let response = await fetch(`https://api.unsplash.com/search/photos?query=${getCityInput()}&client_id=${CLIENT_ID}`)
         .catch(error => {
             console.error('There was an error', error);
         });
-    let data = await response.json();
+    let data = await response.json().catch(error => {
+        console.error('There was an error', error);
+    });
     let image = data.results[0].urls.regular;
     document.body.style.backgroundImage = `url(${image})`;
 }
