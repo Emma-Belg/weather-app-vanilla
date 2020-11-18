@@ -13,20 +13,35 @@ body {
 form {
     margin-right: 5vw;
     padding: 15px;
-    display: inline-block;
+    display: inline;
     flex-direction: column;
     clear: both;
 }
 
+#question {
+    display: inline-block;
+}
+
+/*#largeImg {*/
+/*    display: none;*/
+/*}*/
+#largeImg{
+    object-fit: cover;
+    border-radius: 10px;
+}
+
 input {
-    margin-bottom: 8px;
-    display: block;
-    outline: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
 }
 
 h1, h2{
     color: cyan;
-    text-shadow: 2px 2px black;
+    text-shadow: 1px 1px black;
 }
 
 button {

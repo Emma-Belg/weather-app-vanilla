@@ -15,7 +15,9 @@ async function getImage() {
         console.error('There was an error', error);
     });
     let image = data.results[0].urls.regular;
-    document.body.style.backgroundImage = `url(${image})`;
+    //document.body.style.backgroundImage = `url(${image})`;
+    const largeImg = document.getElementById('largeImg');
+    largeImg.setAttribute('src', image)
 }
 
 async function fetchWeatherData() {
@@ -83,7 +85,7 @@ async function receiveWeatherData() {
         }
         return allDaysArray;
     }
-
+    console.log(allDaysArray)
 //Processing data and getting what I need from the response
     //Formatting the date to display as a heading per card
     function getDisplayDate(day) {
@@ -256,7 +258,7 @@ async function receiveWeatherData() {
         let container = document.getElementById("container");
         let cardWhole = document.getElementById("cards");
         if (!cardWhole.innerText.includes("card")) {
-            for (let i = 0; i < DATAPOINTSPERDAY; i++) {
+            for (let i = 0; i < 6; i++) {
                 container.appendChild(makeCards(dataSlicedIntoDays()[i],
                     icon(dataSlicedIntoDays()[i]),
                     "weather icon",
