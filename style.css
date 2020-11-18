@@ -1,0 +1,64 @@
+body {
+    padding: 1vw;
+}
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#top {
+    display: flex;
+}
+
+form {
+    margin-right: 5vw;
+    padding: 15px;
+    display: inline-block;
+    flex-direction: column;
+    clear: both;
+}
+
+input {
+    margin-bottom: 8px;
+    display: block;
+    outline: none;
+}
+
+h1, h2{
+    color: cyan;
+    text-shadow: 2px 2px black;
+}
+
+button {
+    margin-top: 2px;
+    padding: 8px;
+    color: black;
+    border-style: none;
+    border-radius: 5px;
+    background-color: cyan;
+}
+
+.card {
+    flex: 1;
+    margin: 1vw;
+    padding: 1vw;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: cyan;
+    min-width: 150px;
+    max-width: 500px;
+    background-color: white;
+    opacity: 0.9;
+}
+
+td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: initial;
+}

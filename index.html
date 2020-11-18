@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What's the Weather</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>What's the Weather Doing Over There?</h1>
+
+<!--Set templates to be filled-->
+<template id="template">
+    <section class="card" id="card">
+        <section class="cardHead">
+            <h4 class="dayTitle" ></h4>
+            <img class="icon" src="" alt="Weather Icon" />
+            <div class="cardBody">
+                <p class="description"></p>
+                <p class="minTemp"></p>
+                <p class="maxTemp"></p>
+                <p class="humidity"></p>
+            </div>
+        </section>
+    </section>
+</template>
+
+<template id="now">
+    <section class="card" id="nowCardTemplate">
+        <section class="cardHead">
+            <h4 class="dayTitle">Currently</h4>
+            <table>
+                <tr>
+                    <td><img id="nowIcon" src="" alt="Weather Icon" /></td>
+                    <td><p class="description"></p></td>
+                </tr>
+                <tr>
+                    <td><p class="temp"></p></td>
+                    <td><p class="feelsLikeTemp"></p></td>
+                </tr>
+            </table>
+            <p class="diff">On average, today will feel <span id="diff"></span>  the daily average temperature</p>
+
+            <div class="cardBody">
+            </div>
+        </section>
+    </section>
+</template>
+
+<!--End templates and begin page content-->
+
+<article id="top">
+    <section id="left">
+        <form>
+            <h3>What is the weather like in: </h3>
+            <label>
+                <input id="cityInput" type="text" value="Rome"/>
+                <input id="countryInput" type="text" placeholder="2 letter country ID"/>
+                <button type="button" onclick="weatherOrFib()">Tell Me</button>
+            </label>
+        </form>
+    </section>
+
+    <section id="right">
+        <h2>Forecast for the weather in <span id="cityOutput">...</span>, <span id="countryOutput">...</span></h2>
+        <div id="nowContainer">
+            <div id="nowCard">
+
+            </div>
+        </div>
+    </section>
+
+</article>
+
+<div id="container">
+    <div id="cards">
+    </div>
+</div>
+</body>
+</html>
