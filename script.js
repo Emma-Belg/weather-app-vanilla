@@ -52,9 +52,10 @@ async function updateCountry() {
 
 async function receiveWeatherData() {
     let allDaysArray = [];
-    const HOURSINDAY = 24;
-    const HOURINTERVAL = 3;
-    const DATAPOINTSPERDAY = HOURSINDAY / HOURINTERVAL
+    const API_DATAPOINTS = 40;
+    const HOURS_IN_DAY = 24;
+    const HOUR_INTERVAL = 3;
+    const DATAPOINTS_PER_DAY = HOURS_IN_DAY / HOUR_INTERVAL
     const weather = await fetchWeatherData();
     console.log('weather', weather);
     if (weather.cod !== '200') {
@@ -67,25 +68,32 @@ async function receiveWeatherData() {
 
 
 //Splitting array of 40 data points into days from midnight
-    function dataSlicedIntoDays(){
+    function dataSlicedIntoDays() {
         //isolating just hours in order to find midnight and split days from here
         const beginningOfHourString = 11;
         const endOfHourString = 19;
+        let numberToLoop;
         let hoursStringArray = [];
         for (let i = 0; i < weather.list.length; i++) {
             hoursStringArray.push(weather.list[i].dt_txt.slice(beginningOfHourString, endOfHourString));
         }
         let midnight = hoursStringArray.indexOf("00:00:00");
+        if (midnight === 0 && API_DATAPOINTS === 40) {
+            numberToLoop = 6
+        } else {
+            numberToLoop = 7
+        }
         let firstPoint = 0;
         let lastPoint = midnight;
-        for (let i = 1; i < 7; i++) {
+        for (let i = 1; i < numberToLoop; i++) {
             allDaysArray.push(weather.list.slice(firstPoint, lastPoint));
             firstPoint = lastPoint;
-            lastPoint = DATAPOINTSPERDAY * i + allDaysArray[0].length;
+            lastPoint = DATAPOINTS_PER_DAY * i + allDaysArray[0].length;
         }
         return allDaysArray;
     }
-    console.log(allDaysArray)
+
+    console.log("allDaysArray", allDaysArray)
 //Processing data and getting what I need from the response
     //Formatting the date to display as a heading per card
     function getDisplayDate(day) {
@@ -95,7 +103,7 @@ async function receiveWeatherData() {
     }
 
     function currentInfo() {
-        let tempDiff = feelTempAverage(dataSlicedIntoDays()[0]) -  temperatureAverage(dataSlicedIntoDays()[0]);
+        let tempDiff = feelTempAverage(dataSlicedIntoDays()[0]) - temperatureAverage(dataSlicedIntoDays()[0]);
         let diff;
         let description = weather.list[0].weather[0].description;
         if (tempDiff > 0) {
@@ -108,8 +116,8 @@ async function receiveWeatherData() {
             diff = Math.abs(tempDiff) + " degree(s) colder than"
         }
         return {
-            "icon" : weather.list[0].weather[0].icon,
-            "description" : description[0].toUpperCase() + description.substr(1),
+            "icon": weather.list[0].weather[0].icon,
+            "description": description[0].toUpperCase() + description.substr(1),
             "temp": Math.round(weather.list[0].main.temp),
             "feels_like": Math.round(weather.list[0].main.feels_like),
             "difference": diff
@@ -118,32 +126,35 @@ async function receiveWeatherData() {
 
     //Getting the average 'feels like' temperature per day
     function feelTempAverage(day) {
-        let feelTempTotal = 0;
-        for (let i = 0; i < day.length; i++) {
-            feelTempTotal += day[i].main.feels_like;
-        }
-        return Math.round(feelTempTotal / day.length);
+        return Math.round(day.reduce((a, b) => {
+            return a + b.main.feels_like
+        }, 0) / day.length);
     }
 
     //Getting the average temperature per day
     function temperatureAverage(day) {
-        let tempTotal = 0;
-        for (let i = 0; i < day.length; i++) {
-            tempTotal += day[i].main.temp;
-        }
-        return Math.round(tempTotal / day.length);
+        return Math.round(day.reduce((a, b) => {
+            return a + b.main.temp
+        }, 0) / day.length);
     }
 
     //Getting the average humidity per day
     function humidityAverage(day) {
-        let humidityTotal = 0;
-        for (let i = 0; i < day.length; i++) {
-            humidityTotal += day[i].main.humidity;
-        }
-        return "Humidity: " + Math.round(humidityTotal / day.length) + "%";
+        return "Humidity: " + Math.round(day.reduce((a, b) => {
+            return a + b.main.humidity
+        }, 0) / day.length) + "%";
     }
 
-    //Getting the maximum temperature per day
+    allDaysArray.map(function mapper(s) {
+        if (Array.isArray(s)) {
+            return s.map(mapper);
+        } else {
+            console.log(s * 3);
+        }
+    })
+
+
+//Getting the maximum temperature per day
     function maxTemp(day) {
         let tempArray = [];
         for (let i = 0; i < day.length; i++) {
@@ -152,7 +163,7 @@ async function receiveWeatherData() {
         return "Maximum: " + Math.round(Math.max(...tempArray));
     }
 
-    //Getting the minimum temperature per day
+//Getting the minimum temperature per day
     function minTemp(day) {
         let tempArray = [];
         for (let i = 0; i < day.length; i++) {
@@ -179,7 +190,7 @@ async function receiveWeatherData() {
         return sortable[0][0];
     }
 
-    //Getting the most reoccurring description per day
+//Getting the most reoccurring description per day
     function description(day) {
         let descriptionArray = [];
         for (let i = 0; i < day.length; i++) {
@@ -189,7 +200,7 @@ async function receiveWeatherData() {
         return getMostOccurring(descriptionArray);
     }
 
-    //Getting the most reoccurring icon per day
+//Getting the most reoccurring icon per day
     function icon(day) {
         let iconArray = [];
         let iconNumbers = [];
@@ -209,7 +220,7 @@ async function receiveWeatherData() {
         return getMostOccurring(iconNumbers);
     }
 
-    //Putting it all together in the front end
+//Putting it all together in the front end
     function makeNowCard() {
         let nowCard = document.getElementById("nowCard");
         let url = `http://openweathermap.org/img/wn/${currentInfo().icon}@2x.png`
@@ -259,18 +270,19 @@ async function receiveWeatherData() {
         let cardWhole = document.getElementById("cards");
         if (!cardWhole.innerText.includes("card")) {
             for (let i = 0; i < 6; i++) {
-                container.appendChild(makeCards(dataSlicedIntoDays()[i],
-                    icon(dataSlicedIntoDays()[i]),
+                container.appendChild(makeCards(allDaysArray[i],
+                    icon(allDaysArray[i]),
                     "weather icon",
-                    getDisplayDate(dataSlicedIntoDays()[i]),
-                    description(dataSlicedIntoDays()[i]),
-                    minTemp(dataSlicedIntoDays()[i]),
-                    maxTemp(dataSlicedIntoDays()[i]),
-                    humidityAverage(dataSlicedIntoDays()[i])
+                    getDisplayDate(allDaysArray[i]),
+                    description(allDaysArray[i]),
+                    minTemp(allDaysArray[i]),
+                    maxTemp(allDaysArray[i]),
+                    humidityAverage(allDaysArray[i])
                 ));
             }
         }
     }
+
     return fillCards();
 }
 
@@ -281,7 +293,7 @@ function clearCards(cardToClear) {
 }
 
 // Fibonacci easter egg
-function  fibonacci(fibInput) {
+function fibonacci(fibInput) {
     let a = 0;
     let b = 1;
     let c;
@@ -316,11 +328,12 @@ function  fibonacci(fibInput) {
         \r\n Please enter a number smaller than 200`);
         }
     }
+
     return fibValue();
 }
 
 function weatherOrFib() {
-    if (getCityInput() >= 0){
+    if (getCityInput() >= 0) {
         fibonacci(getCityInput())
     } else {
         clearCards(document.getElementById("cards"));
