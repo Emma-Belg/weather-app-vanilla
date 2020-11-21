@@ -14,10 +14,21 @@ async function getImage() {
     let data = await response.json().catch(error => {
         console.error('There was an error', error);
     });
-    let image = data.results[0].urls.regular;
-    //document.body.style.backgroundImage = `url(${image})`;
-    const largeImg = document.getElementById('largeImg');
-    largeImg.setAttribute('src', image)
+    if (data.results.length) {
+        let image = data.results[0].urls.regular;
+        for (let i = 0; i < data.results.length; i++) {
+            if (data.results[i].width > data.results[i].height) {
+                const largeImg = document.getElementById('largeImg');
+                largeImg.setAttribute('src', image);
+                break;
+            }
+            else if (data.results[i].width < data.results[i].height) {
+
+            }
+        }
+        //document.body.style.backgroundImage = `url(${image})`;
+    }
+
 }
 
 async function fetchWeatherData() {
@@ -145,31 +156,24 @@ async function receiveWeatherData() {
         }, 0) / day.length) + "%";
     }
 
-    allDaysArray.map(function mapper(s) {
-        if (Array.isArray(s)) {
-            return s.map(mapper);
-        } else {
-            console.log(s * 3);
-        }
-    })
-
-
-//Getting the maximum temperature per day
+    //Getting the maximum temperature per day
     function maxTemp(day) {
-        let tempArray = [];
-        for (let i = 0; i < day.length; i++) {
-            tempArray.push(day[i].main.temp_max);
-        }
-        return "Maximum: " + Math.round(Math.max(...tempArray));
+        return "Maximum: " + Math.round(
+            day.reduce((
+                a, b) => {
+                    return Math.max(a, b.main.temp_max)
+                }, 0
+            ));
     }
 
 //Getting the minimum temperature per day
     function minTemp(day) {
-        let tempArray = [];
-        for (let i = 0; i < day.length; i++) {
-            tempArray.push(day[i].main.temp_min);
-        }
-        return "Minimum: " + Math.round(Math.min(...tempArray));
+        return "Minimum: " + Math.round(
+            day.reduce((
+                a, b) => {
+                    return Math.min(a, b.main.temp_min)
+                }, 1000
+            ));
     }
 
     function getMostOccurring(ArrayToUse) {
@@ -253,7 +257,6 @@ async function receiveWeatherData() {
         let img = clone.querySelector('img');
         let p = clone.querySelectorAll("p");
 
-        //Array to match content to items?
         img.setAttribute('src', url);
         img.setAttribute('alt', alt);
         h4.textContent = heading;
