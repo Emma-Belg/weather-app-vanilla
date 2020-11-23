@@ -114,14 +114,12 @@ button {
         padding: 10px;
         text-align: center;
         font-family: sans-serif;
+        background: #6da3b1;
         color: #6da3b1;
         font-size: 16px;
     }
     .card {
         flex-basis: 100%;
-    }
-    h1, h2, h3 {
-        text-shadow: 2px 2px #485050;
     }
 }
 
