@@ -3,7 +3,10 @@ function getCityInput() {
 }
 
 // ToDo -> have an icon and a description for day and night???
-// ToDo -> display a vertical image in mobile and horizontal on computers
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+console.log("width = ", vw, "height = ", vh)
+
 
 async function getImage() {
     const CLIENT_ID = '8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83'
@@ -16,16 +19,6 @@ async function getImage() {
     });
     if (data.results.length) {
         let image = data.results[0].urls.regular;
-        // for (let i = 0; i < data.results.length; i++) {
-        //     if (data.results[i].width > data.results[i].height) {
-        //         const largeImg = document.getElementById('largeImg');
-        //         largeImg.setAttribute('src', image);
-        //         break;
-        //     }
-        //     else if (data.results[i].width < data.results[i].height) {
-        //
-        //     }
-        // }
         document.body.style.backgroundImage = `url(${image})`;
     }
 

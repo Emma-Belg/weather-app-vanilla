@@ -4,23 +4,16 @@ body {
     background-attachment: fixed;
 }
 
-header {
-    margin: -8px;
-    padding: 12px;
-    text-align: center;
-    font-family: sans-serif;
-    background: #afdcdc;
-    color: white;
-    font-size: 22px;
-}
 
 h1, h2{
     color: white;
     text-align: center;
 }
 
-#cards {
+#cards, #nowContainer {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     font-family: sans-serif;
 }
@@ -39,6 +32,8 @@ form {
 input {
     padding-right: 15px;
     padding-left: 15px;
+    opacity: .9;
+    border-radius: 3px;
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
@@ -46,7 +41,8 @@ input {
 }
 
 button {
-    padding: 5px;
+    margin-top: 5px;
+    padding: 5px 8px 5px 8px;
     color: white;
     border-style: none;
     border-radius: 5px;
@@ -62,25 +58,76 @@ button {
     padding: 1vw;
     border-radius: 10px;
     border-style: solid;
-    border-color: #afdcdc;
+    border-color: #fff;
     min-width: 150px;
     max-width: 500px;
-    background-color: white;
+    text-align: center;
+    color: #303636;
+    background-color: #b1d9e2;
+    /*background-color: #b6d2ef;*/
     opacity: 0.9;
 }
 
-@media screen and ( max-width: 900px ) {
-    .card { flex-basis: 10%; }
+
+@media screen and ( min-width:1451px) {
+    header {
+        margin: -8px;
+        padding: 12px;
+        text-align: center;
+        font-family: sans-serif;
+        background: #6da3b1;
+        color: white;
+        font-size: 24px;
+    }
+    .card { flex-basis: 100px; }
 }
 
-@media screen and ( max-width: 600px ) {
-    .card { flex-basis: 50%; }
+@media screen and ( min-width: 951px ) and (max-width:1450px) {
+    header {
+        margin: -8px;
+        padding: 12px;
+        text-align: center;
+        font-family: sans-serif;
+        background: #6da3b1;
+        color: white;
+        font-size: 22px;
+    }
+    .card { flex-basis: 300px; }
 }
 
-@media screen and ( max-width: 300px ) {
+@media only screen and (min-width: 451px) and (max-width:950px){
+    header {
+        margin: -8px;
+        padding: 12px;
+        text-align: center;
+        font-family: sans-serif;
+        background: #6da3b1;
+        color: white;
+        font-size: 18px;
+    }
+    .card { flex-basis:30%; }
+}
+
+@media screen and ( min-width: 200px ) and (max-width:450px) {
+    header {
+        margin: -8px;
+        padding: 10px;
+        text-align: center;
+        font-family: sans-serif;
+        color: #6da3b1;
+        font-size: 16px;
+    }
     .card {
         flex-basis: 100%;
     }
+    h1, h2, h3 {
+        text-shadow: 2px 2px #485050;
+    }
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 td {
