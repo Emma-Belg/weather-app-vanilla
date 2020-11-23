@@ -7,7 +7,17 @@
     <script src="script.js" type="text/javascript"></script>
 </head>
 <body>
-<h1>What's the Weather Doing Over There?</h1>
+<header>
+    <h1>What's the Weather Doing Over There?</h1>
+    <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
+    <form>
+        <h4 id="question">What is the weather like in: </h4>
+        <label></label>
+        <label for="cityInput"></label><input id="cityInput" type="text" value="London"/>
+        <input id="countryInput" type="text" placeholder="2 letter country ID"/>
+        <button type="button" onclick="weatherOrFib()">Tell Me</button>
+    </form>
+</header>
 
 <!--Set templates to be filled-->
 <template id="template">
@@ -50,22 +60,8 @@
 <!--End templates and begin page content-->
 
 <article id="top">
-    <section id="left">
-        <form>
-
-            <label><h3 id="question">What is the weather like in: </h3></label>
-                <input id="cityInput" type="text" value="London"/>
-                <input id="countryInput" type="text" placeholder="2 letter country ID"/>
-                <button type="button" onclick="weatherOrFib()">Tell Me</button>
-
-        </form>
-        <img id="largeImg" src="" alt=" " width="950px" height="400px">
-        <img id="largerImg" src="" alt=" ">
-    </section>
 
     <section id="right">
-        <img id="mediumImg" src="" alt=" ">
-        <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
         <div id="nowContainer">
             <div id="nowCard">
 

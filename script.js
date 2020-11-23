@@ -16,17 +16,17 @@ async function getImage() {
     });
     if (data.results.length) {
         let image = data.results[0].urls.regular;
-        for (let i = 0; i < data.results.length; i++) {
-            if (data.results[i].width > data.results[i].height) {
-                const largeImg = document.getElementById('largeImg');
-                largeImg.setAttribute('src', image);
-                break;
-            }
-            else if (data.results[i].width < data.results[i].height) {
-
-            }
-        }
-        //document.body.style.backgroundImage = `url(${image})`;
+        // for (let i = 0; i < data.results.length; i++) {
+        //     if (data.results[i].width > data.results[i].height) {
+        //         const largeImg = document.getElementById('largeImg');
+        //         largeImg.setAttribute('src', image);
+        //         break;
+        //     }
+        //     else if (data.results[i].width < data.results[i].height) {
+        //
+        //     }
+        // }
+        document.body.style.backgroundImage = `url(${image})`;
     }
 
 }

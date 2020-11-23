@@ -1,18 +1,32 @@
 body {
-    padding: 1vw;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
+
+header {
+    margin: -8px;
+    padding: 12px;
+    text-align: center;
+    font-family: sans-serif;
+    background: #afdcdc;
+    color: white;
+    font-size: 22px;
+}
+
+h1, h2{
+    color: white;
+    text-align: center;
+}
+
 #cards {
     display: flex;
     flex-wrap: wrap;
-}
-
-#top {
-    display: flex;
+    font-family: sans-serif;
 }
 
 form {
-    margin-right: 5vw;
-    padding: 15px;
+    padding: 5px;
     display: inline;
     flex-direction: column;
     clear: both;
@@ -20,14 +34,6 @@ form {
 
 #question {
     display: inline-block;
-}
-
-/*#largeImg {*/
-/*    display: none;*/
-/*}*/
-#largeImg{
-    object-fit: cover;
-    border-radius: 10px;
 }
 
 input {
@@ -39,31 +45,42 @@ input {
     border-bottom-style: groove;
 }
 
-h1, h2{
-    color: cyan;
-    text-shadow: 1px 1px black;
-}
-
 button {
-    margin-top: 2px;
-    padding: 8px;
-    color: black;
+    padding: 5px;
+    color: white;
     border-style: none;
     border-radius: 5px;
-    background-color: cyan;
+    background-color: #485050;
 }
-
+#nowCard {
+    margin-top: 3vw;
+    font-family: sans-serif;
+}
 .card {
     flex: 1;
     margin: 1vw;
     padding: 1vw;
     border-radius: 10px;
     border-style: solid;
-    border-color: cyan;
+    border-color: #afdcdc;
     min-width: 150px;
     max-width: 500px;
     background-color: white;
     opacity: 0.9;
+}
+
+@media screen and ( max-width: 900px ) {
+    .card { flex-basis: 10%; }
+}
+
+@media screen and ( max-width: 600px ) {
+    .card { flex-basis: 50%; }
+}
+
+@media screen and ( max-width: 300px ) {
+    .card {
+        flex-basis: 100%;
+    }
 }
 
 td {
