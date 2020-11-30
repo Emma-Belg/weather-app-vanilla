@@ -12,19 +12,37 @@
     <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
     <form>
         <h4 id="question">What is the weather like in: </h4>
-        <label></label>
         <label for="cityInput"></label><input id="cityInput" type="text" value="London"/>
-        <input id="countryInput" type="text" placeholder="2 letter country ID"/>
-        <button type="button" onclick="weatherOrFib()">Tell Me</button>
+        <label for="countryInput"></label><input id="countryInput" type="text" placeholder="2 letter country ID"/>
+        <button id="tellMe" type="button" onclick="weatherOrFib()">Tell Me</button>
     </form>
 </header>
 
 <!--Set templates to be filled-->
-<template id="template">
-    <section class="card" id="card">
+<template id="now">
+    <section class="card" id="nowCardTemplate">
         <section class="cardHead">
-            <h4 class="dayTitle" ></h4>
-            <img class="icon" src="" alt="Weather Icon" />
+            <h4 class="dayTitle">Currently</h4>
+            <table>
+                <tr>
+                    <td><img id="nowIcon" src="" alt="Weather Icon"/></td>
+                    <td><p class="description"></p></td>
+                </tr>
+                <tr>
+                    <td><p class="temp"></p></td>
+                    <td><p class="feelsLikeTemp"></p></td>
+                </tr>
+            </table>
+            <p class="diff">On average, today will feel <span id="diff"></span> the daily average temperature</p>
+        </section>
+    </section>
+</template>
+
+<template id="template">
+    <section class="card">
+        <section class="cardHead">
+            <h4 class="dayTitle"></h4>
+            <img class="icon" src="" alt="Weather Icon"/>
             <div class="cardBody">
                 <p class="description"></p>
                 <p class="minTemp"></p>
@@ -35,45 +53,18 @@
     </section>
 </template>
 
-<template id="now">
-    <section class="card" id="nowCardTemplate">
-        <section class="cardHead">
-            <h4 class="dayTitle">Currently</h4>
-            <table>
-                <tr>
-                    <td><img id="nowIcon" src="" alt="Weather Icon" /></td>
-                    <td><p class="description"></p></td>
-                </tr>
-                <tr>
-                    <td><p class="temp"></p></td>
-                    <td><p class="feelsLikeTemp"></p></td>
-                </tr>
-            </table>
-            <p class="diff">On average, today will feel <span id="diff"></span>  the daily average temperature</p>
-
-            <div class="cardBody">
-            </div>
-        </section>
-    </section>
-</template>
-
 <!--End templates and begin page content-->
 
-<article id="top">
+<article id="nowContainer">
+    <section id="nowCard">
 
-    <section id="right">
-        <div id="nowContainer">
-            <div id="nowCard">
-
-            </div>
-        </div>
     </section>
-
 </article>
 
-<div id="container">
-    <div id="cards">
-    </div>
-</div>
+<article id="container">
+    <section id="cards">
+
+    </section>
+</article>
 </body>
 </html>

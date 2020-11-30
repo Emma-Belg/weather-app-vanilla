@@ -40,8 +40,9 @@ async function fetchWeatherData() {
 
 function updateCity() {
     let cityOutput = document.getElementById("cityOutput");
+    cityOutput.innerText = "";
     if (!!getCityInput()) {
-        cityOutput.innerText = getCityInput();
+        cityOutput.innerText = getCityInput()[0].toUpperCase() + getCityInput().substr(1);
     }
 }
 
@@ -110,14 +111,20 @@ async function receiveWeatherData() {
         let tempDiff = feelTempAverage(dataSlicedIntoDays()[0]) - temperatureAverage(dataSlicedIntoDays()[0]);
         let diff;
         let description = weather.list[0].weather[0].description;
-        if (tempDiff > 0) {
-            diff = Math.abs(tempDiff) + " degree(s) warmer than"
+        if (tempDiff === 1) {
+            diff = Math.abs(tempDiff) + " degree warmer than"
+        }
+        if (tempDiff > 1) {
+            diff = Math.abs(tempDiff) + " degrees warmer than"
         }
         if (tempDiff === 0) {
             diff = " the same as"
         }
-        if (tempDiff < 0) {
-            diff = Math.abs(tempDiff) + " degree(s) colder than"
+        if (tempDiff === -1) {
+            diff = Math.abs(tempDiff) + " degree colder than"
+        }
+        if (tempDiff < -1) {
+            diff = Math.abs(tempDiff) + " degrees colder than"
         }
         return {
             "icon": weather.list[0].weather[0].icon,
