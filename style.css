@@ -1,7 +1,16 @@
+html, body {
+    height: 100%;
+}
 body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+#content{
+    flex: 1 0 auto;
 }
 
 header {
@@ -121,8 +130,10 @@ img {
 }
 
 footer {
-    margin: 8vh -8px -8px -8px;
-    padding: 12px;
+    flex-shrink: 0;
+    margin: 8vh -8px 0 -8px;
+    /*bottom: 0;*/
+    width: 100vw;
     text-align: center;
     font-family: sans-serif;
     background: #6da3b1;
@@ -130,6 +141,7 @@ footer {
 }
 
 footer img{
+    padding-bottom: 15px;
     filter: invert(1);
     display: inline;
     clear: both;
