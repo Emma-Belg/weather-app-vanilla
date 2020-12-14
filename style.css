@@ -3,6 +3,7 @@ body {
     background-position: center;
     background-attachment: fixed;
 }
+
 header {
     margin: -8px;
     padding: 12px;
@@ -10,25 +11,12 @@ header {
     font-family: sans-serif;
     background: #6da3b1;
     color: white;
+    font-size: 20px;
 }
+
 h1, h2, h3, h4{
     color: white;
     text-align: center;
-}
-
-#cards, #nowContainer {
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    font-family: sans-serif;
-
-    -ms-box-orient: horizontal;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -moz-flex;
-    display: -webkit-flex;
-    display: flex;
 }
 
 form {
@@ -62,10 +50,25 @@ button {
     border-radius: 5px;
     background-color: #485050;
 }
+
+#cards, #nowCard {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+
+    -ms-box-orient: horizontal;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+}
 #nowCard {
     margin: 3vw auto 0 auto;
-    font-family: sans-serif;
 }
+
 .card {
     flex: 1;
     margin: 1vw;
@@ -78,36 +81,27 @@ button {
     text-align: center;
     color: #303636;
     background-color: #b1d9e2;
-    /*background-color: #b6d2ef;*/
     opacity: 0.9;
-    /*text-size-adjust: none;*/
 }
 
 @media screen and ( min-width:1451px) {
-    header {
-        font-size: 20px;
-    }
+    header { font-size: 20px; }
     .card { flex-basis: 100px; }
 }
 
 @media screen and ( min-width: 951px ) and (max-width:1450px) {
     header { font-size: 18px; }
     .card { flex-basis: 300px; }
-    p { font-size: 16px;}
 }
 
 @media only screen and (min-width: 451px) and (max-width:950px){
     header { font-size: 16px; }
     .card { flex-basis:30%; }
-    p { font-size: 15px; }
 }
 
 @media screen and ( min-width: 200px ) and (max-width:450px) {
     header { font-size: 14px;}
-    .card {
-        flex-basis: 100%;
-    }
-    p { font-size: 14px; }
+    .card { flex-basis: 100%;}
 }
 
 table {

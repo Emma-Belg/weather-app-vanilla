@@ -2,12 +2,6 @@ function getCityInput() {
     return document.getElementById("cityInput").value;
 }
 
-// ToDo -> have an icon and a description for day and night???
-const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-console.log("width = ", vw, "height = ", vh)
-
-
 async function getImage() {
     const CLIENT_ID = '8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83'
     let response = await fetch(`https://api.unsplash.com/search/photos?query=${getCityInput()}&client_id=${CLIENT_ID}`)
@@ -51,7 +45,6 @@ async function updateCountry() {
     let countryOutput = document.getElementById("countryOutput");
     if (!!getCityInput()) {
         countryOutput.innerText = `, ${weather.city.country}`;
-        document.getElementById("countryInput").setAttribute("value", weather.city.country);
     }
 }
 
@@ -62,7 +55,7 @@ async function receiveWeatherData() {
     const HOUR_INTERVAL = 3;
     const DATAPOINTS_PER_DAY = HOURS_IN_DAY / HOUR_INTERVAL
     const weather = await fetchWeatherData();
-    console.log('weather', weather);
+
     if (weather.cod !== '200') {
         alert("There was an error fetching your data. " +
             "\r\n Please check these possible problems and try again:" +
@@ -98,7 +91,6 @@ async function receiveWeatherData() {
         return allDaysArray;
     }
 
-    console.log("allDaysArray", allDaysArray)
 //Processing data and getting what I need from the response
     //Formatting the date to display as a heading per card
     function getDisplayDate(day) {
@@ -206,21 +198,10 @@ async function receiveWeatherData() {
 
 //Getting the most reoccurring icon per day
     function icon(day) {
-        let iconArray = [];
         let iconNumbers = [];
-        let AMicons = [];
-        let PMicons = [];
         for (let i = 0; i < day.length; i++) {
-            iconArray.push(day[i].weather[0].icon.slice(2, 3));
             iconNumbers.push(day[i].weather[0].icon.slice(0, 2));
-            if (iconArray[i] === 'd') {
-                AMicons.push(day[i].weather[0].icon);
-            }
-            if (iconArray[i] === 'n') {
-                PMicons.push(day[i].weather[0].icon);
-            }
         }
-        //ToDo dont forget to slice off the d/n and then only display the day or night one at correct times
         return getMostOccurring(iconNumbers);
     }
 
