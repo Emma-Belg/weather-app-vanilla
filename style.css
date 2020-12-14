@@ -22,7 +22,6 @@ h1, h2, h3, h4{
 form {
     padding: 5px;
     display: inline;
-    flex-direction: column;
     clear: both;
 }
 
@@ -119,4 +118,23 @@ img {
     margin-left: auto;
     margin-right: auto;
     opacity: initial;
+}
+
+footer {
+    margin: 8vh -8px -8px -8px;
+    padding: 12px;
+    text-align: center;
+    font-family: sans-serif;
+    background: #6da3b1;
+    color: white;
+}
+
+footer img{
+    filter: invert(1);
+    display: inline;
+    clear: both;
+}
+
+footer a {
+    text-decoration: none;
 }
