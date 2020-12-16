@@ -18,3 +18,6 @@ Making a basic weather app using the [Open Weather Map API](https://openweatherm
     - removing node elements using removeChild
 - Styling:
     - flexbox
+    - creating a sticky footer using flexbox
+- Other:
+    - search on enter as well as button click

@@ -266,7 +266,6 @@ async function receiveWeatherData() {
             }
         }
     }
-
     return fillCards();
 }
 
@@ -314,6 +313,17 @@ function fibonacci(fibInput) {
     }
 
     return fibValue();
+}
+
+function onEnter(e) {
+        // look for window.event in case event isn't passed in
+        e = e || window.event;
+        if (e.keyCode === 13)
+        {
+            document.getElementById('tellMe').click();
+            return false;
+        }
+        return true;
 }
 
 function weatherOrFib() {

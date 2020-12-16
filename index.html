@@ -18,8 +18,14 @@
     <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
     <form>
         <h3 id="question">What is the weather like in: </h3>
-        <label for="cityInput"></label><input id="cityInput" type="text" value="London"/>
-        <label for="countryInput"></label><input id="countryInput" type="text" placeholder="2 letter country ID"/>
+        <label for="cityInput"></label>
+        <input id="cityInput" type="text" value="London"
+               onkeypress="onEnter(event)"
+        />
+        <label for="countryInput"></label>
+        <input id="countryInput" type="text" placeholder="2 letter country ID"
+               onkeypress="onEnter(event)"
+        />
         <button id="tellMe" type="button" onclick="weatherOrFib()">Tell Me</button>
     </form>
 </header>

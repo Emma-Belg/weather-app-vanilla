@@ -7,6 +7,7 @@ body {
     background-attachment: fixed;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 #content{
@@ -16,6 +17,7 @@ body {
 header {
     margin: -8px;
     padding: 12px;
+    width: 100vw;
     text-align: center;
     font-family: sans-serif;
     background: #6da3b1;
