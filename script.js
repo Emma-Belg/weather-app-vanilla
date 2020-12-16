@@ -326,6 +326,17 @@ function onEnter(e) {
         return true;
 }
 
+function revealCountrySelector(){
+    // const wantsDifferentCountry = document.getElementById("differentCountry").click();
+    // if (wantsDifferentCountry) {
+    const changeCountry = document.getElementById("setDifferentCountry");
+    if (changeCountry.style.display === "none") {
+        changeCountry.style.display = "inline";
+    }
+        //document.getElementById("setDifferentCountry").style.display = "block";
+   // }
+}
+
 function weatherOrFib() {
     if (getCityInput() >= 0) {
         fibonacci(getCityInput())

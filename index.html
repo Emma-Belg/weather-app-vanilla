@@ -22,11 +22,24 @@
         <input id="cityInput" type="text" value="London"
                onkeypress="onEnter(event)"
         />
-        <label for="countryInput"></label>
-        <input id="countryInput" type="text" placeholder="2 letter country ID"
-               onkeypress="onEnter(event)"
-        />
+        <section id="setDifferentCountry" class="toolTip" style="display:none;">
+            <h4>Enter a two letter ID for the country you wanted</h4>
+            <label for="countryInput"></label>
+            <span class="tooltipInput">If you want to search for the same city in a different country,
+                simply type the two letter ID of that country. </br>
+                E.g. Japan = JP, Great Brittan = GB
+            </span>
+            <input id="countryInput" type="text" placeholder="2 letter country ID"
+                   onkeypress="onEnter(event)"
+            />
+        </section>
         <button id="tellMe" type="button" onclick="weatherOrFib()">Tell Me</button>
+        <section class="toolTip">
+            <span class="tooltipButton">Did you want to search for the same city in a different country? </br>
+            Simply click here to enter the country
+            </span>
+            <button id="differentCountry" type="button" onclick="revealCountrySelector()">Different country</button>
+        </section>
     </form>
 </header>
 

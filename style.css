@@ -17,7 +17,6 @@ body {
 header {
     margin: -8px;
     padding: 12px;
-    width: 100vw;
     text-align: center;
     font-family: sans-serif;
     background: #6da3b1;
@@ -134,8 +133,6 @@ img {
 footer {
     flex-shrink: 0;
     margin: 8vh -8px 0 -8px;
-    /*bottom: 0;*/
-    width: 100vw;
     text-align: center;
     font-family: sans-serif;
     background: #6da3b1;
@@ -151,4 +148,30 @@ footer img{
 
 footer a {
     text-decoration: none;
+}
+
+.toolTip {
+    position: relative;
+    display: inline-block;
+}
+
+.toolTip .tooltipButton, .tooltipInput {
+    visibility: hidden;
+    margin-left: 14px;
+    margin-top: 30px;
+    width: 200px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px 0;
+    font-size: 12px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.toolTip:hover .tooltipButton, .toolTip:hover .tooltipInput  {
+    visibility: visible;
 }
