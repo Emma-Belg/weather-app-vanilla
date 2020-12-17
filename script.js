@@ -208,7 +208,7 @@ async function receiveWeatherData() {
 //Putting it all together in the front end
     function makeNowCard() {
         let nowCard = document.getElementById("nowCard");
-        let url = `http://openweathermap.org/img/wn/${currentInfo().icon}@2x.png`
+        let url = `https://openweathermap.org/img/wn/${currentInfo().icon}@2x.png`
         let template = document.querySelector('#now');
         let clone = template.content.cloneNode(true);
         let img = clone.querySelector('#nowIcon');
@@ -229,7 +229,7 @@ async function receiveWeatherData() {
     nowContainer.appendChild(makeNowCard());
 
     function makeCards(day, icon, alt, heading, descrip, min, max, humidity) {
-        let url = `http://openweathermap.org/img/wn/${icon}d@2x.png`
+        let url = `https://openweathermap.org/img/wn/${icon}d@2x.png`
         let cardWhole = document.getElementById("cards");
         let template = document.querySelector('#template');
 
@@ -274,6 +274,26 @@ function clearCards(cardToClear) {
         cardToClear.removeChild(cardToClear.firstChild);
     }
 }
+
+function randomIcons(elementID) {
+    const iconArray = [ "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d"]
+
+    let newImgs = iconArray.map((icon) => {
+        let img = document.createElement("img");
+        let url = `https://openweathermap.org/img/wn/${icon}@2x.png`
+        img.setAttribute('src', url)
+        img.setAttribute("class", "startIcons")
+        return img;
+    });
+    let container = document.getElementById(elementID)
+    return newImgs.map((newImg) => container.appendChild(newImg))
+}
+
+window.onload = function() {
+    randomIcons("slider")
+    randomIcons("slider2")
+};
+
 
 // Fibonacci easter egg
 function fibonacci(fibInput) {
@@ -327,14 +347,10 @@ function onEnter(e) {
 }
 
 function revealCountrySelector(){
-    // const wantsDifferentCountry = document.getElementById("differentCountry").click();
-    // if (wantsDifferentCountry) {
     const changeCountry = document.getElementById("setDifferentCountry");
     if (changeCountry.style.display === "none") {
         changeCountry.style.display = "inline";
     }
-        //document.getElementById("setDifferentCountry").style.display = "block";
-   // }
 }
 
 function weatherOrFib() {

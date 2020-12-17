@@ -1,6 +1,7 @@
 html, body {
     height: 100%;
 }
+
 body {
     background-size: cover;
     background-position: center;
@@ -10,7 +11,7 @@ body {
     overflow-x: hidden;
 }
 
-#content{
+#content {
     flex: 1 0 auto;
 }
 
@@ -24,7 +25,7 @@ header {
     font-size: 20px;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4 {
     color: white;
     text-align: center;
 }
@@ -60,6 +61,71 @@ button {
     background-color: #485050;
 }
 
+#differentCountry {
+    background-color: #5a6565;
+}
+
+.toolTip {
+    position: relative;
+    display: inline-block;
+}
+
+.toolTip .tooltipButton, .tooltipInput {
+    visibility: hidden;
+    margin-left: 14px;
+    margin-top: 30px;
+    width: 200px;
+    background-color: #b1d9e2;
+    color: #303636;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 12px;
+
+    position: absolute;
+    z-index: 1;
+}
+
+.toolTip:hover .tooltipButton, .toolTip:hover .tooltipInput {
+    visibility: visible;
+}
+
+#beforeSearch {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 10px;
+}
+#slider {
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    animation: slide 15s infinite;
+    animation-timing-function: linear;
+    animation-name: icons;
+    align-items: center;
+    justify-content: center;
+}
+#slider2 {
+    margin-left: -1600px;
+    display: flex;
+    flex-flow: row nowrap;
+    position: absolute;
+    animation: slide 15s infinite;
+    animation-timing-function: linear;
+    animation-name: icons;
+}
+.startIcons {
+    flex-wrap: nowrap;
+    margin: 20px;
+    padding: 20px;
+}
+@keyframes icons {
+    0%  {left:-10%; opacity: 0}
+    20% {opacity: 1;}
+    70% {opacity: 1;}
+    100% {left:100%; opacity: 0}
+}
+
 #cards, #nowCard {
     align-items: center;
     justify-content: center;
@@ -74,6 +140,7 @@ button {
     display: -webkit-flex;
     display: flex;
 }
+
 #nowCard {
     margin: 3vw auto 0 auto;
 }
@@ -93,24 +160,18 @@ button {
     opacity: 0.9;
 }
 
-@media screen and ( min-width:1451px) {
-    header { font-size: 20px; }
-    .card { flex-basis: 100px; }
+.dayTitle {
+    color: #303636;
 }
 
-@media screen and ( min-width: 951px ) and (max-width:1450px) {
-    header { font-size: 18px; }
-    .card { flex-basis: 300px; }
-}
+@media screen and ( min-width: 1451px) {
+    header {
+        font-size: 20px;
+    }
 
-@media only screen and (min-width: 451px) and (max-width:950px){
-    header { font-size: 16px; }
-    .card { flex-basis:30%; }
-}
-
-@media screen and ( min-width: 200px ) and (max-width:450px) {
-    header { font-size: 14px;}
-    .card { flex-basis: 100%;}
+    .card {
+        flex-basis: 100px;
+    }
 }
 
 table {
@@ -139,7 +200,7 @@ footer {
     color: white;
 }
 
-footer img{
+footer img {
     padding-bottom: 15px;
     filter: invert(1);
     display: inline;
@@ -150,28 +211,32 @@ footer a {
     text-decoration: none;
 }
 
-.toolTip {
-    position: relative;
-    display: inline-block;
+@media screen and ( min-width: 951px ) and (max-width: 1450px) {
+    header {
+        font-size: 18px;
+    }
+
+    .card {
+        flex-basis: 300px;
+    }
 }
 
-.toolTip .tooltipButton, .tooltipInput {
-    visibility: hidden;
-    margin-left: 14px;
-    margin-top: 30px;
-    width: 200px;
-    background-color: gray;
-    color: #fff;
-    text-align: center;
-    border-radius: 4px;
-    padding: 5px 0;
-    font-size: 12px;
+@media only screen and (min-width: 451px) and (max-width: 950px) {
+    header {
+        font-size: 16px;
+    }
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+    .card {
+        flex-basis: 30%;
+    }
 }
 
-.toolTip:hover .tooltipButton, .toolTip:hover .tooltipInput  {
-    visibility: visible;
+@media screen and ( min-width: 200px ) and (max-width: 450px) {
+    header {
+        font-size: 14px;
+    }
+
+    .card {
+        flex-basis: 100%;
+    }
 }

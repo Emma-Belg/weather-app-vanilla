@@ -21,3 +21,5 @@ Making a basic weather app using the [Open Weather Map API](https://openweatherm
     - creating a sticky footer using flexbox
 - Other:
     - search on enter as well as button click
+    - tooltips to improve UX
+    - display HTML element on click
