@@ -2,9 +2,9 @@ function getCityInput() {
     return document.getElementById("cityInput").value;
 }
 
-async function getImage() {
+async function getImage(input) {
     const CLIENT_ID = '8b3303518e733b03bb9fbe890041915da381de31ef0602ad71dc8adfd4b79f83'
-    let response = await fetch(`https://api.unsplash.com/search/photos?query=${getCityInput()}&client_id=${CLIENT_ID}`)
+    let response = await fetch(`https://api.unsplash.com/search/photos?query=${input}&client_id=${CLIENT_ID}`)
         .catch(error => {
             console.error('There was an error', error);
         });
@@ -13,9 +13,10 @@ async function getImage() {
     });
     if (data.results.length) {
         let image = data.results[0].urls.regular;
-        document.body.style.backgroundImage = `url(${image})`;
+        return document.body.style.backgroundImage = `url(${image})`;
+    } else {
+        return null;
     }
-
 }
 
 async function fetchWeatherData() {
@@ -60,7 +61,7 @@ async function receiveWeatherData() {
         alert("There was an error fetching your data. " +
             "\r\n Please check these possible problems and try again:" +
             "\r\n - City name and spelling" +
-            "\r\n - There is no city of that name in the country indicated" +
+            "\r\n - There may be no city of that name in the country indicated" +
             "\r\n - Please only enter 2 letter country ID rather than full country name");
     }
 
@@ -268,101 +269,3 @@ async function receiveWeatherData() {
     }
     return fillCards();
 }
-
-function clearCards(cardToClear) {
-    while (cardToClear.firstChild) {
-        cardToClear.removeChild(cardToClear.firstChild);
-    }
-}
-
-function randomIcons(elementID) {
-    const iconArray = [ "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d"]
-
-    let newImgs = iconArray.map((icon) => {
-        let img = document.createElement("img");
-        let url = `https://openweathermap.org/img/wn/${icon}@2x.png`
-        img.setAttribute('src', url)
-        img.setAttribute("class", "startIcons")
-        return img;
-    });
-    let container = document.getElementById(elementID)
-    return newImgs.map((newImg) => container.appendChild(newImg))
-}
-
-window.onload = function() {
-    randomIcons("slider")
-    randomIcons("slider2")
-};
-
-
-// Fibonacci easter egg
-function fibonacci(fibInput) {
-    let a = 0;
-    let b = 1;
-    let c;
-    let fib = [a, b];
-
-    for (let i = 0; i < 201; i++) {
-        c = a + b;
-        a = b;
-        b = c;
-        fib.push(c);
-    }
-
-    function fibValue() {
-        let value = fib[fibInput]
-        let lastNumber = fibInput.toString().split('').pop()
-        let nth;
-        if (lastNumber == 3 && fibInput !== `13`) {
-            nth = 'rd';
-        } else if (lastNumber == 2 && fibInput !== `12`) {
-            nth = 'nd';
-        } else if (lastNumber == 1 && fibInput !== `11`) {
-            nth = 'st';
-        } else {
-            nth = 'th';
-        }
-        if (fibInput <= 200) {
-            return alert(`You found an easter egg!
-        \r\nThe value of the ${fibInput}${nth} number in the Fibonacci Sequence is ${value}`);
-        }
-        if (fibInput > 200) {
-            return alert(`You found an easter egg!
-        \r\n Please enter a number smaller than 200`);
-        }
-    }
-
-    return fibValue();
-}
-
-function onEnter(e) {
-        // look for window.event in case event isn't passed in
-        e = e || window.event;
-        if (e.keyCode === 13)
-        {
-            document.getElementById('tellMe').click();
-            return false;
-        }
-        return true;
-}
-
-function revealCountrySelector(){
-    const changeCountry = document.getElementById("setDifferentCountry");
-    if (changeCountry.style.display === "none") {
-        changeCountry.style.display = "inline";
-    }
-}
-
-function weatherOrFib() {
-    if (getCityInput() >= 0) {
-        fibonacci(getCityInput())
-    } else {
-        clearCards(document.getElementById("cards"));
-        clearCards(document.getElementById("nowCard"));
-        receiveWeatherData().then();
-        updateCity();
-        updateCountry().then();
-        getImage().then()
-    }
-}
-

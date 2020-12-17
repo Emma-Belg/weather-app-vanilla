@@ -6,110 +6,121 @@
     <meta name="MobileOptimized" content="320"/>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=5.5, width=device-width"/>
 
-    <meta name="description" content="A weather app that will tell you the weather for the coming 6 days as well as the current weather in any location you seek">
+    <meta name="description"
+          content="A weather app that will tell you the weather for the coming 6 days as well as the current weather in any location you seek">
     <title>What's the Weather</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" type="text/javascript"></script>
+    <script src="scripts/script.js" type="text/javascript"></script>
+    <script src="scripts/fibonacci.js" type="text/javascript"></script>
+    <script src="scripts/weatherSearch.js" type="text/javascript"></script>
 </head>
 <body>
-<div id="content">
-<header>
-    <h1>What's the Weather Doing Over There?</h1>
-    <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
-    <form>
-        <h3 id="question">What is the weather like in: </h3>
-        <label for="cityInput"></label>
-        <input id="cityInput" type="text" value="London"
-               onkeypress="onEnter(event)"
-        />
-        <section id="setDifferentCountry" class="toolTip" style="display:none;">
-            <h4>Enter a two letter ID for the country you wanted</h4>
-            <label for="countryInput"></label>
-            <span class="tooltipInput">If you want to search for the same city in a different country,
-                simply type the two letter ID of that country. </br>
+<div id="bodyWrapper">
+    <div id="content">
+        <header>
+            <h1>What's the Weather Doing Over There?</h1>
+            <h2>Forecast for the weather in <span id="cityOutput">...</span><span id="countryOutput"></span></h2>
+            <form>
+                <label for="cityInput">What is the weather like in: </label>
+                <input id="cityInput" type="text" value="London"
+                       onkeypress="onEnter(event)"
+                />
+                <section id="setDifferentCountry" class="toolTip" style="display:none;">
+                    <br>
+                    <label for="countryInput">Enter a two letter ID for the country you wanted: </label>
+                    <span class="tooltipInput tooltipTop">If you want to search for the same city in a different country,
+                simply type the two letter ID of that country. <br>
                 E.g. Japan = JP, Great Brittan = GB
             </span>
-            <input id="countryInput" type="text" placeholder="2 letter country ID"
-                   onkeypress="onEnter(event)"
-            />
-        </section>
-        <button id="tellMe" type="button" onclick="weatherOrFib()">Tell Me</button>
-        <section class="toolTip">
-            <span class="tooltipButton">Did you want to search for the same city in a different country? </br>
+                    <input id="countryInput" type="text" placeholder="2 letter country ID"
+                           onkeypress="onEnter(event)"
+                    />
+                </section>
+                <button id="tellMe" type="button" onclick="weatherOrFib()">Tell Me</button>
+                <section class="toolTip">
+            <span class="tooltipButton tooltipTop">Did you want to search for the same city in a different country?
+                <br>
             Simply click here to enter the country
             </span>
-            <button id="differentCountry" type="button" onclick="revealCountrySelector()">Different country</button>
-        </section>
-    </form>
-</header>
+                    <button id="differentCountry" type="button" onclick="revealCountryInput()">Different country
+                    </button>
+                </section>
+            </form>
+        </header>
 
-<!--Set templates to be filled-->
-<template id="now">
-    <section class="card">
-        <section class="cardHead">
-            <h4 class="dayTitle">Currently</h4>
-            <table>
-                <tr>
-                    <td><img id="nowIcon" src="" alt="Weather Icon"/></td>
-                    <td><p class="description"></p></td>
-                </tr>
-                <tr>
-                    <td><p class="temp"></p></td>
-                    <td><p class="feelsLikeTemp"></p></td>
-                </tr>
-            </table>
-            <p class="diff">On average, today will feel <span id="diff"></span> the daily average temperature</p>
-        </section>
-    </section>
-</template>
-
-<template id="template">
-    <section class="card">
-        <section class="cardContent">
-            <h4 class="dayTitle"></h4>
-            <img class="icon" src="" alt="Weather Icon"/>
-            <section class="cardBody">
-                <p class="description"></p>
-                <p class="minTemp"></p>
-                <p class="maxTemp"></p>
-                <p class="humidity"></p>
+        <!--Set templates to be filled-->
+        <template id="now">
+            <section class="card">
+                <section class="cardHead">
+                    <h4 class="dayTitle">Currently</h4>
+                    <table>
+                        <tr>
+                            <td><img id="nowIcon" src="" alt="Weather Icon"/></td>
+                            <td><p class="description"></p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="temp"></p></td>
+                            <td><p class="feelsLikeTemp"></p></td>
+                        </tr>
+                    </table>
+                    <p class="diff">On average, today will feel <span id="diff"></span> the daily average temperature
+                    </p>
+                </section>
             </section>
-        </section>
-    </section>
-</template>
+        </template>
 
-<!--End templates and begin page content-->
+        <template id="template">
+            <section class="card">
+                <section class="cardContent">
+                    <h4 class="dayTitle"></h4>
+                    <img class="icon" src="" alt="Weather Icon"/>
+                    <section class="cardBody">
+                        <p class="description"></p>
+                        <p class="minTemp"></p>
+                        <p class="maxTemp"></p>
+                        <p class="humidity"></p>
+                    </section>
+                </section>
+            </section>
+        </template>
 
-<article id="nowContainer">
-    <article id="beforeSearch" style="display: flex">
-        <section id="slider">
-        </section>
-        <section id="slider2">
-        </section>
-    </article>
-    <section id="nowCard">
+        <!--End templates and begin page content-->
 
-    </section>
-</article>
+        <article id="nowContainer">
+            <article id="beforeSearch" style="display: flex">
+                <section id="slider">
+                </section>
+                <section id="slider2">
+                </section>
+            </article>
+            <section id="nowCard">
 
-<article id="container">
-    <section id="cards">
+            </section>
+        </article>
 
-    </section>
-</article>
+        <article id="container">
+            <section id="cards">
 
+            </section>
+        </article>
+
+    </div>
+    <footer>
+        <article id="footerContent">
+            <p>Emma Wishart 2020 &#169</p>
+            <a href="https://github.com/Emma-Belg/">
+                <img src="assets/github_icon.png" alt="Emma Wishart GitHub" width="30px" height="30px">
+            </a>
+            <a href="https://www.linkedin.com/in/emmawishart1/">
+                <img src="assets/linkedin-circle-dark.png" alt="Emma Wishart LinkedIn" width="30px" height="30px">
+            </a>
+            <section class="toolTip">
+                <span class="tooltipBottom">Enter a number into the city search bar.</span>
+                <img id="easterEgg" src="assets/egg.png" alt="easter-egg" width="30px" height="30px">
+            </section>
+        </article>
+
+    </footer>
 </div>
-<footer>
-    <article id="footerContent">
-        <p>Emma Wishart 2020 &#169</p>
-        <a href="https://github.com/Emma-Belg/">
-            <img src="assets/github_icon.png" alt="Emma Wishart GitHub" width="30px" height="30px">
-        </a>
-        <a href="https://www.linkedin.com/in/emmawishart1/">
-            <img src="assets/linkedin-circle-dark.png" alt="Emma Wishart LinkedIn" width="30px" height="30px">
-        </a>
-    </article>
-
-</footer>
 </body>
 </html>
