@@ -13,8 +13,8 @@ function randomIcons(elementID) {
 }
 function randomBackgroundImagesBeforeSearch (){
     let keywordsArray = ["summer", "autumn", "winter", "spring", "warm", "pumpkin", "snow", "tulips"]
-    let backgroundImages = keywordsArray.map((keyword) => {return getImage(keyword).finally()})
-    return backgroundImages.map((backgroundImage) => backgroundImage ? backgroundImage : null)
+    let randomNumber = Math.floor(Math.random() * keywordsArray.length);
+    return getImage(keywordsArray[randomNumber]);
 }
 window.onload = function() {
     randomIcons("slider")
