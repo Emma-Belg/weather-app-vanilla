@@ -102,6 +102,13 @@ button {
     margin: 8vw auto 0 auto;
 }
 
+#nowCard .card {
+    background-color: #8bcbd9;
+}
+#cards .card {
+    background-color: #b1d9e2;
+}
+
 .card {
     flex: 1;
     margin: 2vw 20px;
@@ -113,7 +120,7 @@ button {
     max-width: 700px;
     text-align: center;
     color: #303636;
-    background-color: #b1d9e2;
+    /*background-color: #b1d9e2;*/
     opacity: 0.9;
 }
 
@@ -159,7 +166,7 @@ footer {
     flex-shrink: 0;
     text-align: center;
     font-family: sans-serif;
-    background: #6da3b1;
+    background-color: #5991a0;
     color: white;
 }
 
