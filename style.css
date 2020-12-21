@@ -125,16 +125,6 @@ button {
     color: #303636;
 }
 
-@media screen and ( min-width: 1451px) {
-    header {
-        font-size: 20px;
-    }
-
-    .card {
-        flex-basis: 100px;
-    }
-}
-
 table {
     margin-left: auto;
     margin-right: auto;
@@ -187,8 +177,48 @@ footer img {
 footer a {
     text-decoration: none;
 }
+@media screen and ( min-width: 1501px ) {
+    header {font-size: 18px;}
+    .card {flex-basis: 10%}
+    #beforeSearch {
+        display: flex;
+        flex-flow: row nowrap;
+        margin-top: 60px;
+        overflow-x: hidden;
+    }
+    #slider {
+        display: flex;
+        flex-flow: row nowrap;
+        position: absolute;
+        animation: slide 15s infinite;
+        animation-timing-function: linear;
+        animation-name: icons;
+        align-items: center;
+        justify-content: center;
+    }
+    #slider2 {
+        margin-left: -1600px;
+        display: flex;
+        flex-flow: row nowrap;
+        position: absolute;
+        animation: slide 15s infinite;
+        animation-timing-function: linear;
+        animation-name: icons;
+    }
+    .startIcons {
+        flex-wrap: nowrap;
+        margin: 20px;
+        padding: 20px;
+    }
+    @keyframes icons {
+        0%  {left:-10%; opacity: 0}
+        20% {opacity: 1;}
+        70% {opacity: 1;}
+        100% {left:100%; opacity: 0}
+    }
+}
 
-@media screen and ( min-width: 951px ) {
+@media screen and ( min-width: 951px ) and (max-width: 1500px) {
     header {font-size: 18px;}
     .card {flex-basis: 300px;}
     #beforeSearch {
