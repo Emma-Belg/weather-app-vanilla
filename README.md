@@ -19,6 +19,8 @@ Making a basic weather app using the [Open Weather Map API](https://openweatherm
 - Styling:
     - flexbox
     - creating a sticky footer using flexbox
+    - css animation keyframes
+    - media queries: screen min and max
 - Other:
     - search on enter as well as button click
     - tooltips to improve UX

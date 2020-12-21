@@ -3,9 +3,11 @@ function randomIcons(elementID) {
     const iconArray = [ "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d"]
     let newImgs = iconArray.map((icon) => {
         let img = document.createElement("img");
-        let url = `https://openweathermap.org/img/wn/${icon}@2x.png`
-        img.setAttribute('src', url)
-        img.setAttribute("class", "startIcons")
+        let url = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        img.setAttribute("src", url);
+        img.setAttribute("class", "startIcons");
+        img.setAttribute("alt", "weather_icon");
+        img.setAttribute("width", "140px");
         return img;
     });
     let container = document.getElementById(elementID)
@@ -19,7 +21,7 @@ function randomBackgroundImagesBeforeSearch (){
 window.onload = function() {
     randomIcons("slider")
     randomIcons("slider2")
-    randomBackgroundImagesBeforeSearch()
+    randomBackgroundImagesBeforeSearch().then()
 };
 
 
