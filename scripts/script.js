@@ -7,7 +7,7 @@ function randomIcons(elementID) {
         img.setAttribute("src", url);
         img.setAttribute("class", "startIcons");
         img.setAttribute("alt", "weather_icon");
-        img.setAttribute("width", "140px");
+        img.setAttribute("width", "100px");
         return img;
     });
     let container = document.getElementById(elementID)
