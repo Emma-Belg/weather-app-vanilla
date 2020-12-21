@@ -1,3 +1,16 @@
+function revealCountryInput(){
+    const changeCountry = document.getElementById("setDifferentCountry");
+    if (changeCountry.style.display === "none") {
+        changeCountry.style.display = "inline";
+    }
+}
+
+function clearCards(cardToClear) {
+    while (cardToClear.firstChild) {
+        cardToClear.removeChild(cardToClear.firstChild);
+    }
+}
+
 //set up for visual interest before search fills page with content
 function randomIcons(elementID) {
     const iconArray = [ "01d", "02d", "03d", "04d", "09d", "10d", "11d", "13d", "50d"]
@@ -8,6 +21,7 @@ function randomIcons(elementID) {
         img.setAttribute("class", "startIcons");
         img.setAttribute("alt", "weather_icon");
         img.setAttribute("width", "100px");
+        img.setAttribute("height", "100px");
         return img;
     });
     let container = document.getElementById(elementID)
@@ -23,20 +37,6 @@ window.onload = function() {
     randomIcons("slider2")
     randomBackgroundImagesBeforeSearch().then()
 };
-
-
-function revealCountryInput(){
-    const changeCountry = document.getElementById("setDifferentCountry");
-    if (changeCountry.style.display === "none") {
-        changeCountry.style.display = "inline";
-    }
-}
-
-function clearCards(cardToClear) {
-    while (cardToClear.firstChild) {
-        cardToClear.removeChild(cardToClear.firstChild);
-    }
-}
 
 //get all information into page
 function onEnter(e) {
@@ -66,4 +66,3 @@ function weatherOrFib() {
         getImage(getCityInput()).then()
     }
 }
-

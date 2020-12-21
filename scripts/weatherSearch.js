@@ -65,17 +65,13 @@ async function receiveWeatherData() {
             "\r\n - Please only enter 2 letter country ID rather than full country name");
     }
 
-
 //Splitting array of 40 data points into days from midnight
     function dataSlicedIntoDays() {
         //isolating just hours in order to find midnight and split days from here
         const beginningOfHourString = 11;
         const endOfHourString = 19;
         let numberToLoop;
-        let hoursStringArray = [];
-        for (let i = 0; i < weather.list.length; i++) {
-            hoursStringArray.push(weather.list[i].dt_txt.slice(beginningOfHourString, endOfHourString));
-        }
+        let hoursStringArray = weather.list.map((data) => data.dt_txt.slice(beginningOfHourString, endOfHourString));
         let midnight = hoursStringArray.indexOf("00:00:00");
         if (midnight === 0 && API_DATAPOINTS === 40) {
             numberToLoop = 6
@@ -159,7 +155,7 @@ async function receiveWeatherData() {
             ));
     }
 
-//Getting the minimum temperature per day
+    //Getting the minimum temperature per day
     function minTemp(day) {
         return "Minimum: " + Math.round(
             day.reduce((
@@ -189,20 +185,16 @@ async function receiveWeatherData() {
 
 //Getting the most reoccurring description per day
     function description(day) {
-        let descriptionArray = [];
-        for (let i = 0; i < day.length; i++) {
-            let descripString = day[i].weather[0].description
-            descriptionArray.push(descripString[0].toUpperCase() + descripString.substr(1));
-        }
-        return getMostOccurring(descriptionArray);
+        let descriptionString = day.map((data)=> {
+        let allDescriptions = data.weather[0].description;
+           return allDescriptions[0].toUpperCase() + allDescriptions.substr(1);
+        });
+        return getMostOccurring(descriptionString);
     }
 
 //Getting the most reoccurring icon per day
     function icon(day) {
-        let iconNumbers = [];
-        for (let i = 0; i < day.length; i++) {
-            iconNumbers.push(day[i].weather[0].icon.slice(0, 2));
-        }
+        let iconNumbers = day.map((data) => data.weather[0].icon.slice(0,2))
         return getMostOccurring(iconNumbers);
     }
 
