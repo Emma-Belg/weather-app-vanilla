@@ -78,6 +78,7 @@ button {
 }
 .tooltipBottom {
     margin-left: 20px;
+    max-width: 150px;
 }
 .toolTip:hover .tooltipButton, .toolTip:hover .tooltipInput, .toolTip:hover .tooltipBottom {
     visibility: visible;
