@@ -28,7 +28,7 @@ function randomIcons(elementID) {
     return newImgs.map((newImg) => container.appendChild(newImg))
 }
 function randomBackgroundImagesBeforeSearch (){
-    let keywordsArray = ["summer", "autumn", "winter", "spring", "warm", "pumpkin", "snow", "tulips"]
+    let keywordsArray = ["summer beach", "autumn", "winter", "spring", "warm", "autumn leaves", "snow man", "spring blooms"]
     let randomNumber = Math.floor(Math.random() * keywordsArray.length);
     return getImage(keywordsArray[randomNumber]);
 }
